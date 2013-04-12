@@ -10,22 +10,22 @@ Run `install` to get the `puppet` package on the target system.  The
 `setup` to build the remote structure in `/etc/puppet`.  `apply` then
 executes `puppet apply` on the target system.
 
-        (ns my.servers.puppet
-          (:require ...
-                    [pallet.crate.puppet :as puppet]
-                    [pallet.api :as pallet]
-                    ...))
-        
-        (def puppet-server
-          (pallet/server-spec
-           :phases {:bootstrap (pallet/plan-fn
-                                (puppet/install))
-                    :configure (pallet/plan-fn
-                                (puppet/setup
-                                 (format "%s/src/puppet-manifests/"
-                                         (System/getProperty "user.home"))
-                                 :conf (io/resource "crate/puppet/puppet.conf"))
-                                (puppet/apply))}))
+    (ns my.servers.puppet
+      (:require ...
+                [pallet.crate.puppet :as puppet]
+                [pallet.api :as pallet]
+                ...))
+    
+    (def puppet-server
+      (pallet/server-spec
+       :phases {:bootstrap (pallet/plan-fn
+                            (puppet/install))
+                :configure (pallet/plan-fn
+                            (puppet/setup
+                             (format "%s/src/puppet-manifests/"
+                                     (System/getProperty "user.home"))
+                             :conf (io/resource "crate/puppet/puppet.conf"))
+                            (puppet/apply))}))
 
 `setup` takes a local path, an optional `:site` with a slurpable
 resource (`File`, path `String`, etc.) if you want to override the
