@@ -6,8 +6,8 @@ don't control.  This crate aims to make life easier.
 
 ## Usage
 
-Run `install` to get the `puppet` package on the target system.  The
-`setup` to build the remote structure in `/etc/puppet`.  `apply` then
+Run `install` to get the `puppet` package on the target system.
+`setup` to build the remote structure in `/etc/puppet`.  `apply`
 executes `puppet apply` on the target system.
 
     (ns my.servers.puppet
